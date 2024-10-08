@@ -89,6 +89,8 @@ public class Main {
             // Update the sold quantity for the item
             int butcherItemIndex = butcherItemNames.indexOf(butcherSellItem);
             butcherItemInfo[butcherItemIndex][2] += butcherItemsSold;
+            // Reduce the InStore quantity
+            butcherItemInfo[butcherItemIndex][1] -= butcherItemsSold;
             System.out.printf("You have sold %.2f items of %s.\n", butcherItemsSold, butcherSellItem);
         }
     }
@@ -114,8 +116,8 @@ public class Main {
             totalInventory += butcherItemInfo[i][1];
             totalSellingValue += butcherItemInfo[i][1] * butcherItemInfo[i][4];
         }
-        System.out.printf("The total inventory is %.2f.\n", totalInventory);
-        System.out.printf("The total selling value is %.2f.\n", totalSellingValue);
+        System.out.printf("Total Inventory: $%.2f.\n", totalSellingValue);
+        System.out.printf("The number of items in the store: %.2f.\n", totalInventory);
     }
 
     // Method to process the output command
