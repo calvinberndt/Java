@@ -1,0 +1,13 @@
+//Goals: keep track of sales amount, sale values
+//Commands
+Add //adds a new sales person of a given name
+Output // Displays the total sale value for all sales, the number of sales of each type, the individual persons sales info
+Update // Updates the values for a specific sales person
+Quit // list all who sold enough to win
+
+
+//Must use enum ComputerType: DESKTOP LAPTOP TABLET
+//Must use Seller class provided
+//Must use SellerList class provided
+//Must use the MainClass Provided
+
