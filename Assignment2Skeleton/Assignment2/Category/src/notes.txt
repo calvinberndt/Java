@@ -5,7 +5,7 @@ Output // Displays the total sale value for all sales, the number of sales of ea
 Update // Updates the values for a specific sales person
 Quit // list all who sold enough to win
 
-
+Explaining Git
 //Must use enum ComputerType: DESKTOP LAPTOP TABLET
 //Must use Seller class provided
 //Must use SellerList class provided
