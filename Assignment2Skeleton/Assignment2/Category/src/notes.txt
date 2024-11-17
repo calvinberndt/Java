@@ -1,3 +1,4 @@
+/* Matts notes
 //Goals: keep track of sales amount, sale values
 //Commands
 Add //adds a new sales person of a given name
@@ -10,4 +11,9 @@ Explaining Git
 //Must use Seller class provided
 //Must use SellerList class provided
 //Must use the MainClass Provided
+*/
 
+
+/* Joels notes
+
+*/
