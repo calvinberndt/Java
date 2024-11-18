@@ -46,17 +46,22 @@ public class SellerList {
 // params: (none)
 //-----------------------------------------------------------------
 	public void processAddCommands( ){
-		String name = input.next();
+		System.out.println("Type the name of the seller:");
+		String name = input.next(); // takes name the user wants to add to the list 
 		for (int i = 0; i < List.size(); i++)
 		{
-			if (List.get(i).SellerHasName(name))
+			if (List.get(i).SellerHasName(name)) // Loops through list and checks to see if name exist in list already
 			{
+				
 				System.out.printf("%s is already in the system.\n", name);
+				//if name already exists then we notifies user that name exists. 
 			}
 			else {
 				List.add(new Seller(name));
 				System.out.printf("%s has been added!\n", name);
+				// Else adds name to the end of Seller List and notifies the user
 			}
+			
 		}
 		
 	}
@@ -67,6 +72,21 @@ public class SellerList {
 // params: (none)
 //-----------------------------------------------------------------
 	public void processOutputCommands( ){
+		System.out.println("Type the name of the seller:");
+		String name = input.next(); // takes name the user wants to see there stats.
+		
+		for (int i = 0; i < List.size(); i++)
+		{
+			if (List.get(i).SellerHasName(name)) // Loops through list and checks to see if name exist in list already
+			{
+				List.get(i).toString();
+			}
+			else 
+			{
+				System.out.printf("%s is not a seller.\n", name);
+			}
+		}
+		
 	}
 // The method reads and processes Update commands. The method Update the
 // seller with the given sales and the appropriate number of computers.
@@ -88,4 +108,9 @@ public class SellerList {
 //-----------------------------------------------------------------
 	public void whoWin( ){
 	}
+	
+	
+	
+		
+	
 }//End of Class
