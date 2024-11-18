@@ -1,0 +1,23 @@
+/* Matt's notes
+//Goals: keep track of sales amount, sale values
+//Commands
+Add //adds a new sales person of a given name
+Output // Displays the total sale value for all sales, the number of sales of each type, the individual persons sales info
+Update // Updates the values for a specific sales person
+Quit // list all who sold enough to win
+
+E
+//Must use enum ComputerType: DESKTOP LAPTOP TABLET
+//Must use Seller class providedxplaining Git
+//Must use SellerList class provided
+//Must use the MainClass Provided
+*/
+
+
+/* Joey's notes
+code may not work but who knows. I will eventually debug it when rest of the functions are in play. 
+commandAddProcess: 
+	 Goal is to add a seller to the list 
+commandOutputProcess:
+	 Goal is to display employee 
+*/
