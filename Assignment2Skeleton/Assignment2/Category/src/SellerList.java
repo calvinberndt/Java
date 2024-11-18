@@ -46,6 +46,19 @@ public class SellerList {
 // params: (none)
 //-----------------------------------------------------------------
 	public void processAddCommands( ){
+		String name = input.next();
+		for (int i = 0; i < List.size(); i++)
+		{
+			if (List.get(i).SellerHasName(name))
+			{
+				System.out.printf("%s is already in the system.\n", name);
+			}
+			else {
+				List.add(new Seller(name));
+				System.out.printf("%s has been added!\n", name);
+			}
+		}
+		
 	}
 // The method reads and processes Output commands. The method displays the
 // total value of computers sold and the total number of each type of
