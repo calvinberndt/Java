@@ -21,3 +21,10 @@ commandAddProcess:
 commandOutputProcess:
 	 Goal is to display employee 
 */
+
+
+Calvin:
+Added functionality to processUpdateCommands.
+Changed method names to match the methods being called in processCommands
+Moved List.add(new Seller(name)) outside of the for loop in the processAddCommands
+processOutputCommands: Provided a boolean flag to method. toString was not being displayed. Have to add %s in printf

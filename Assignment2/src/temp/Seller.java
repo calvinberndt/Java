@@ -1,4 +1,4 @@
-package SellerPackage;
+package temp;
 public class Seller {
 	private String name; // name of the seller
 	private double salesTotal; // running total of sales in $
@@ -40,7 +40,8 @@ public class Seller {
 	// params: (none)
 	//
 	public String toString( ){
-		return String.format("%s sold %d of computers for a total of $%f",this.name, this.deskTopSold + this.lapTopSold + this.tabletSold, this.salesTotal);
+		return String.format("%s: $%.2f; sold %d LapTops, %d DeskTops and %d Tablets\n",
+				this.name, this.salesTotal, this.lapTopSold, this.deskTopSold, this.tabletSold);
 	}
 	// Adds the money and number of computers to the seller's accumulated
 	// sales total and number of computers sold based on the computer type.
@@ -59,10 +60,8 @@ public class Seller {
 				this.deskTopSold += numComputers;
 				break;
 			case("LAPTOP"):
-				this.lapTopSold += lapTopSold;
+				this.lapTopSold += numComputers;
 				break;
 			}
-
-		}
 	}
 }// end class Seller

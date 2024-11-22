@@ -1,4 +1,4 @@
-ackage SellerPackage;
+package SellerPackage;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class SellerList {
