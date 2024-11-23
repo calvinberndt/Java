@@ -50,16 +50,16 @@ public class Seller {
 	// laptop field is updated by numComputers if the computer type is
 	// “TABLET” then the tablet fields are updated by numComputers.
 	// Param: ( double , int , String )
-	public void UpdateSales ( double totalDollars, int numComputers,String computerType ){
+	public void UpdateSales ( double totalDollars, int numComputers, ComputerType computerType ){
 		this.salesTotal += totalDollars;
-		switch(computerType){
-			case("TABLET"):
+		switch (computerType) {
+			case TABLET:
 				this.tabletSold += numComputers;
 				break;
-			case("DESKTOP"):
+			case DESKTOP:
 				this.deskTopSold += numComputers;
 				break;
-			case("LAPTOP"):
+			case LAPTOP:
 				this.lapTopSold += numComputers;
 				break;
 			}

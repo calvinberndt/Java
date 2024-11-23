@@ -102,12 +102,14 @@ public class SellerList {
 //-----------------------------------------------------------------
 	public void processUpdateCommands(){
 		//Initialize variables
-		String Sellername, typeOfComputer;
+		String Sellername;
+		ComputerType typeOfComputer;
 		double totalDollars;
 		int numberofComputersSold;
+
 		//Read input from user to set variables
 		Sellername = input.next();
-		typeOfComputer = input.next().toUpperCase();
+		typeOfComputer = ComputerType.valueOf(input.next().toUpperCase());
 		totalDollars = input.nextDouble();
 		numberofComputersSold = input.nextInt();
 
@@ -115,14 +117,13 @@ public class SellerList {
 		for (int i = 0; i < List.size(); i++){
 			if(List.get(i).SellerHasName(Sellername)){
 				List.get(i).UpdateSales(totalDollars, numberofComputersSold, typeOfComputer);
+				String computerType = typeOfComputer.name();
 				System.out.printf("%s sold %d %s computers for %.2f\n",
-						Sellername, numberofComputersSold, typeOfComputer.toLowerCase(), totalDollars);
+						Sellername, numberofComputersSold, computerType.toLowerCase(), totalDollars);
 				return;
 			}
 		}
 		System.out.printf("%s is not a registered electronics dealer.\n", Sellername);
-
-
 
 	}
 // The method prints out the list of people who sold enough to win the
