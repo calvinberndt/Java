@@ -40,7 +40,34 @@ public class Portfolio {
 //-----------------------------------------------------------------
     public void ProcessCommands() {
 
-    }
+    	boolean isRunning = true;
+        while (isRunning) {
+            System.out.print("Enter command: ");
+            char command = input.next().toLowerCase().charAt(0); // take user input
+            switch (command) {
+                case 's':
+                    // Call ProcessStock with appropriate parameters
+                    ProcessStock();
+                    break;
+                case 'c':
+                    // Call ProcessCash with appropriate parameters
+                    ProcessCash();
+                    break;
+                case 'd':
+                    DisplayPortfolio();
+                    break;
+                case 'v':
+                    DisplayPortfolioValue();
+                    break;
+                case 'q':
+                    isRunning = false; // using boolean because I am feeling Devious. 
+                    break; // boolean becomes false disabling the While loop 
+                default:
+                    System.out.println("Invalid Command. Please try again!");
+                    break;
+    		}// end of swtich
+    	}//end of while 
+    }// end of ProcessCommands
 
     //-------------------------------------------------------------------
 // Here is a good method to have. It can do a bunch of heavy lifting for
@@ -48,7 +75,7 @@ public class Portfolio {
 // with the S command. If the AnotherStock isn’t in the list and the DI
 // doesn’t reach the maximum allowable number of stocks, the method adds
 // AnotherStock into the list and displays a successful transaction
-// message. If AnotherStock isn’t in the list and the DI does reach the
+// message. If AnotherStock isn't in the list and the DI does reach the
 // maximum allowable number of stocks, the method displays an unsuccessful
 // transaction message.
 // Otherwise, it will make use of the Transaction method in the class
@@ -60,8 +87,40 @@ public class Portfolio {
 // params: (Stock)
 //-----------------------------------------------------------------
     public void ProcessStock(Stock AnotherStock) {
+        System.out.print("Enter stock name, price, and shares: ");
+        String name = input.next();
+        double price = input.nextDouble();
+        int shares = input.nextInt();
 
+        Stock newStock = new Stock(name, price, shares);
+        boolean stockExists = false; // Bool to keep track if stock is in list or not.
+
+        for (int i = 0; i < List.size(); i++) {
+            if (List.get(i) instanceof Stock && List.get(i).getName().equals(name)) {
+                Stock existingStock = (Stock) List.get(i);
+                double profit = existingStock.Transaction(newStock);
+                this.profit += profit - 5; // Deduct $5 transaction fee
+                if (existingStock.getShares() == 0) {
+                    List.remove(i);
+                }
+                stockExists = true;
+                System.out.println("Transaction completed.");
+                break;
+            }
+        }
+
+        if (!stockExists) {
+            if (numStocks < MAX_STOCKS) {
+                List.add(newStock);
+                numStocks++;
+                this.profit -= 5; // Deduct $5 transaction fee
+                System.out.println("Transaction completed.");
+            } else {
+                System.out.println("Transaction NOT completed. Maximum number of stocks being monitored.");
+            }
+        }
     }
+    	
 
     //-------------------------------------------------------------------
 // Here is another good method to have. It can do a bunch of heavy lifting
@@ -80,6 +139,37 @@ public class Portfolio {
 // params: (Cash)
 //-----------------------------------------------------------------
     public void ProcessCash(Cash AnotherCash) {
+    	
+    	System.out.print("Enter bank name and amount: ");
+        String bankName = input.next();
+        double amount = input.nextDouble();
+        boolean cashExists = false;
+        
+        Cash newCash = new Cash(bankName, amount);  
+       
+        for (int i = 0; i < List.size(); i++) {
+            if (List.get(i) instanceof Cash && List.get(i).getName().equals(bankName)) {
+                Cash existingCash = (Cash) List.get(i);
+                existingCash.Transaction(newCash);
+                if (existingCash.getMarketValue() == 0) {
+                    List.remove(i);
+                    numCashs--;
+                }
+                cashExists = true;
+                System.out.println("Transaction completed.");
+                break;
+            }
+        }
+
+        if (!cashExists) {
+            if (numCashs < MAX_CASHS) {
+                List.add(newCash);
+                numCashs++;
+                System.out.println("Transaction completed.");
+            } else {
+                System.out.println("Transaction NOT completed. Maximum number of cash accounts being monitored.");
+            }
+        }
     }
 
     //-------------------------------------------------------------------
@@ -89,6 +179,9 @@ public class Portfolio {
 // params: (none)
 //-----------------------------------------------------------------
     public void DisplayPortfolio() {
+    	for (Asset asset : List) {
+            System.out.println(asset.toString()); // not much but size does not matter. This forloop has personality
+        }
     }
 
     //-------------------------------------------------------------------
@@ -98,5 +191,15 @@ public class Portfolio {
 // params: (none)
 //-----------------------------------------------------------------
     public void DisplayPortfolioValue() {
+    	// scrubing list and getting market value. 
+    	double totalCash = 0.0; // total sum of market value
+    	for (int i = 0; i < List.size(); i++) {
+            Asset asset = List.get(i);
+            if (asset instanceof Cash) {
+                totalCash += asset.getMarketValue();
+            }
+        }
+    	
+    	System.out.printf("Profit so far: $ %.2f, Cash so far: $ %.2f%n", profit, totalCash); //that's a print
     }
 }// end of class Portfolio
